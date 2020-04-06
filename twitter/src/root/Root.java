@@ -12,6 +12,7 @@ import java.util.stream.Stream;
 
 import Util.Message;
 import action.Action;
+import action.Login;
 
 public class Root {
 	//シングルトン
@@ -30,7 +31,9 @@ public class Root {
 		//　設定にあるクラスのインスタンスを自動生成
 		actionClassNames.stream().forEach((final String name) -> {
 			try {
-				actionMap.put(name, (Action)Class.forName("action."+ name).newInstance());
+				Action action = (Action)Class.forName("action."+ name).newInstance();
+				action.setAction(action);
+				actionMap.put(name, action);
 			} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
 				e.printStackTrace();
 			}
@@ -38,18 +41,22 @@ public class Root {
 	}
 
 	public boolean actionExcute(String inputLine) {
-		switch (inputLine.split(" ")[0]) {
-			case "tw":
+		switch (matchCommand(inputLine.split(" ")[0])) {
+			case TWEET:
 				return true;
-			case "fw":
+			case FOLLOW:
 				return true;
-			case "exit":
-				Message.display("common_exit_app");
+			case EXIT:
+				Message.displayln("common_exit_app");
 				return false;
-			default :
-				Message.display("error_re_enter");
+			case LOGIN:
+				((Login)actionMap.get("Login")).index();
+				return true;
+			case ERROR:
+				Message.displayln("error_re_enter");
 				return true;
 		}
+		return false;
 	}
 
 	//インスタンス取得用
@@ -59,4 +66,15 @@ public class Root {
         }
         return root;
     }
+
+	//コマンド略称から一致したコマンド名を抽出
+	private Command matchCommand(String inputCommand) {
+		Command[] commands = Command.values();
+		Command selectCommand = Command.ERROR;
+		for(Command command: commands) {
+			selectCommand = command.getAbbr().equals(inputCommand) ? command : Command.ERROR;
+			if(selectCommand != Command.ERROR)break;
+		}
+		return selectCommand;
+	}
 }

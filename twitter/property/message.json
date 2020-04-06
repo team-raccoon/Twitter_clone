@@ -2,5 +2,8 @@
 	common_input : "キーボードから入力してください",
 	common_exit_app : "アプリを終了しました",
 	error_re_enter : "※コマンドが入力されていません",
-	debug_input_confirm : "入力された文字は「{0}」です"
+	debug_input_confirm : "入力された文字は「{0}」です",
+	login_title : "ログイン画面",
+	login_mail : "メールアドレスを入力してください >",
+	login_pass : "パスワードを入力してください >"
 }
