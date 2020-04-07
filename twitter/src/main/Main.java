@@ -8,14 +8,15 @@ import Util.Message;
 import root.Root;
 
 public class Main {
-	public static BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+
 	public static void main(String[] args) {
+		BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
 		try {
 			while (true) {
 				String inputLine = null;
-		        Message.displayln("common_input");
+		        Message.display("common_input");
 		        inputLine = input.readLine();
-		        Message.displayln("debug_input_confirm", inputLine);
+		        Message.display("debug_input_confirm", inputLine);
 				if(!Root.getInstance().actionExcute(inputLine))break;
 			}
 		} catch (IOException e) {
