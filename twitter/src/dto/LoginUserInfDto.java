@@ -1,21 +1,6 @@
-package form;
+package dto;
 
-public class LoginForm {
-	//シングルトン
-	private static LoginForm loginForm;
-	//呼び出されないように
-	private LoginForm() {
-	}
-
-	//インスタンス取得用
-	public static LoginForm getInstance(){
-        if(loginForm == null){
-            loginForm = new LoginForm();
-        }
-        return loginForm;
-    }
-
-	//以下からはbean
+public class LoginUserInfDto {
 	private String usersEmail;
 	private String usersPassword;
 	private String usersName;
@@ -43,4 +28,5 @@ public class LoginForm {
 	public void setUsersName(String usersName) {
 		this.usersName = usersName;
 	}
+
 }

@@ -5,6 +5,7 @@ public class SessionForm {
 	private static SessionForm sessionForm;
 
 	private String loginUserName;
+	private boolean isLogin = false;
 
 	private SessionForm() {
 	}
@@ -23,5 +24,13 @@ public class SessionForm {
 
 	public void setLoginUserName(String loginUserName) {
 		this.loginUserName = loginUserName;
+	}
+
+	public void changeLogin(boolean isLogin) {
+		this.isLogin = isLogin;
+	}
+
+	public boolean loginState() {
+		return isLogin;
 	}
 }

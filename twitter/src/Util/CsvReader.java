@@ -15,8 +15,7 @@ public class CsvReader {
 		List<String> readList = new ArrayList<String>();
 
 		try {
-//		      File f = new File(Paths.get(System.getProperty("user.dir") + "/db/csv/users.csv"));
-			FileInputStream file = new FileInputStream("/Users/nao/desktop/wcp/Twitter_clone/twitter/db/csv/" + csvName + ".csv");
+			FileInputStream file = new FileInputStream(System.getProperty("user.dir") +"/db/csv/"+ csvName + ".csv");
 			InputStreamReader f = new InputStreamReader(file);
 		    BufferedReader br = new BufferedReader(f);
 
